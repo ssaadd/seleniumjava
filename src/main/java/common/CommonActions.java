@@ -3,8 +3,10 @@ package common;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static common.Config.BROWSER_AND_PLATFORM;
@@ -16,7 +18,6 @@ public class CommonActions {
         switch (BROWSER_AND_PLATFORM) {
             case "CHROME_WIN":
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe");
-                System.out.println(System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case "CHROME_MAC":
@@ -26,6 +27,12 @@ public class CommonActions {
             case "MOZILLA_WIN":
                 System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\geckodriver.exe");
                 driver = new FirefoxDriver();
+                break;
+            case "ADD":
+                ChromeOptions options = new ChromeOptions();
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe");
+                options.addExtensions(new File(System.getProperty("user.dir") + "\\src\\main\\resources\\1.crx"));
+                driver = new ChromeDriver(options);
                 break;
             default:
                 Assertions.fail("Incorrect brorser name " + BROWSER_AND_PLATFORM);

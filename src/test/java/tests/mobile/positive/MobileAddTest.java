@@ -9,5 +9,7 @@ public class MobileAddTest extends BaseTest {
     @Test
     public void checkRedirectToAuth(){
         basePage.goToUrl(MOBILE_PAYMENT_URL);
+        mobileAddPage.selectCardFromWallet();
+        basePage.isAuthWidgetPresent();
     }
 }
