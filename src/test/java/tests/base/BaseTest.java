@@ -1,6 +1,7 @@
 package tests.base;
 
 import common.CommonActions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,6 +11,7 @@ import pages.car_loans.CarLoansPage;
 import pages.mobile.MobilePage;
 
 import static common.Config.CLEAR_COOKIES;
+import static common.Config.HOLD_BROWSER_OPEN;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
@@ -27,6 +29,12 @@ public class BaseTest {
     }
 }
 
+@AfterAll
+    void quit(){
+    if (!HOLD_BROWSER_OPEN){
+        driver.close();
+    }
+}
 
 
 }
