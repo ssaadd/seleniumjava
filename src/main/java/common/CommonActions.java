@@ -15,14 +15,18 @@ public class CommonActions {
         WebDriver driver = null;
         switch (BROWSER_AND_PLATFORM) {
             case "CHROME_WIN":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe");
+                System.out.println(System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe");
                 driver = new ChromeDriver();
+                break;
             case "CHROME_MAC":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
                 driver = new ChromeDriver();
+                break;
             case "MOZILLA_WIN":
-                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\geckodriver.exe");
                 driver = new FirefoxDriver();
+                break;
             default:
                 Assertions.fail("Incorrect brorser name " + BROWSER_AND_PLATFORM);
         }
